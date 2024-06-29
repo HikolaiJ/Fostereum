@@ -8,7 +8,7 @@
 #define MQ135_PIN 34
 
 // DHT TYPE AND INIT
-#define DHTTYPE DHT11
+#define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
