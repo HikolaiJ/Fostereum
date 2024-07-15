@@ -3,7 +3,7 @@
 
 // PINS
 #define DHTPIN 27
-#define SOIL_MOISTURE_PIN_1 15 // GPIO PIN 2 Have input of internal led causing some power consumption using PIN 15 as alternate
+#define SOIL_MOISTURE_PIN_1 15
 #define SOIL_MOISTURE_PIN_2 4
 #define MQ135_PIN 34
 
@@ -12,7 +12,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
-  Serial.begin(115200); //Baud rate
+  Serial.begin(115200); // Baud rate
   dht.begin();
   pinMode(SOIL_MOISTURE_PIN_1, INPUT);
   pinMode(SOIL_MOISTURE_PIN_2, INPUT);
@@ -32,13 +32,14 @@ void loop() {
     }
   }
 
-  // Read temperature and humidity from DHT11
+  // Read temperature and humidity from DHT22
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
 
   // Check if any reads failed and exit early (to try again).
   if (isnan(humidity) || isnan(temperature)) {
     Serial.println("Failed to read from DHT sensor!");
+    return;  // Skip the rest of the loop
   }
 
   // Read the soil moisture sensor values
@@ -48,20 +49,22 @@ void loop() {
   // Read the MQ135 sensor value
   int mq135Value = analogRead(MQ135_PIN);
 
+  // Get current time (assuming a real-time clock is set up)
+  String timestamp = String(year()) + "-" + String(month()) + "-" + String(day()) + " " + String(hour()) + ":" + String(minute()) + ":" + String(second());
+
   // Print the sensor values to the Serial Monitor
-  Serial.print("Humidity: ");
+  Serial.print(timestamp);
+  Serial.print(",");
   Serial.print(humidity);
-  Serial.print(" %\t");
-  Serial.print("Temperature: ");
+  Serial.print(",");
   Serial.print(temperature);
-  Serial.print(" *C\t");
-  Serial.print("Soil Moisture 1: ");
+  Serial.print(",");
   Serial.print(soilMoistureValue1);
-  Serial.print("\tSoil Moisture 2: ");
+  Serial.print(",");
   Serial.print(soilMoistureValue2);
-  Serial.print("\tMQ135 Value: ");
+  Serial.print(",");
   Serial.println(mq135Value);
 
-  // Wait a few seconds between measurements.
-  delay(2000);
+  // Wait a few seconds between measurements
+  delay(10000);
 }
