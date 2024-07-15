@@ -1,5 +1,15 @@
+#include <WiFi.h>
 #include <DHT.h>
-#include "esp_system.h"
+#include "time.h"
+
+// Replace with your network credentials
+const char* ssid = "your_SSID";
+const char* password = "your_PASSWORD";
+
+// NTP server to request time
+const char* ntpServer = "pool.ntp.org";
+const long gmtOffset_sec = 0;
+const int daylightOffset_sec = 3600;
 
 // PINS
 #define DHTPIN 27
@@ -17,6 +27,28 @@ void setup() {
   pinMode(SOIL_MOISTURE_PIN_1, INPUT);
   pinMode(SOIL_MOISTURE_PIN_2, INPUT);
   pinMode(MQ135_PIN, INPUT);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+
+  // Initialize NTP
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+}
+
+String getFormattedTime() {
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    Serial.println("Failed to obtain time");
+    return "N/A";
+  }
+  char timeStringBuff[50];
+  strftime(timeStringBuff, sizeof(timeStringBuff), "%Y-%m-%d %H:%M:%S", &timeinfo);
+  return String(timeStringBuff);
 }
 
 void loop() {
@@ -49,8 +81,8 @@ void loop() {
   // Read the MQ135 sensor value
   int mq135Value = analogRead(MQ135_PIN);
 
-  // Get current time (assuming a real-time clock is set up)
-  String timestamp = String(year()) + "-" + String(month()) + "-" + String(day()) + " " + String(hour()) + ":" + String(minute()) + ":" + String(second());
+  // Get current time
+  String timestamp = getFormattedTime();
 
   // Print the sensor values to the Serial Monitor
   Serial.print(timestamp);
