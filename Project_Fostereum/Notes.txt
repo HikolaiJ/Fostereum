@@ -1,0 +1,19 @@
+>> External Libraries :
+streamlit
+numpy
+cv2 (opencv, contrib)
+
+>> Libraries needed to be installed though not mentioned in the WebApp:
+scikit-learn
+lightgbm
+
+>> for HTML, CSS, JS :
+~ CSS
+-.stApp is the main elements aka <body>
+
+>> When running the web:
+• Please make sure you're also connected to internet
+because some of the item need it to be used.
+• Web is not responsive yet, I am planned to modify so it'll
+be a responsive website but if you see this note then it means
+I have not enough time to do it (┬┬﹏┬┬)\
