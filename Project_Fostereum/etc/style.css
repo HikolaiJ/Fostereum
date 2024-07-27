@@ -6,14 +6,41 @@
     font-family: "PT Sans", sans-serif;
     font-style: normal;
 }
-input  {
-    border-radius: 9px;
+div[pageState="setting"] input  {
+    border-radius: 8px;
     box-shadow: inset #00000059 0 0 5px 1px;
-    padding: 4px 8px;
+    padding: 3px 4px;
     border-color: #d6d6d6;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    width: 490px;
 }
 label {
     right: 0;
+}
+div[pageState="setting"] label {
+    padding-right:20px;
+}
+div[pageState="graphic-sensors"] .hd {
+    display: none;
+}
+#container-control button {
+    border: inset;
+    width: 50px;
+    height: 50px;
+    background: #d6d6d6;
+    padding: 20px;
+    position: relative;
+    border-radius: 19px;
+    display: block;
+}
+#container-control button img {
+    height: auto;
+    width: 35px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
 }
 
 .centers {
@@ -32,6 +59,22 @@ label {
 .inserted-OE canvas {
     border-radius: 8px;
 }
+.ToggleGr {
+    padding:5px;
+    font-size: 10px;
+    background: #dedede;
+    border: 3px #fdfdfd inset;
+    border-radius: 12px;
+}
+.sep {
+    position: relative;
+}
+#CONT .sep:not(:last-child) {
+    margin-bottom: 30px;
+}
+#container-control button:not(:last-child) {
+    margin-bottom: 10px;
+}
 #LogoBut {
     width: 20rem;
     height: auto;
@@ -47,10 +90,79 @@ label {
 }
 #Sensors-det {
     box-shadow: inset #5252528c 0 0 19px 4px;
+    padding: 16px 20px;
+    font-weight: bold;
 }
 #display-cam {
     box-shadow: #000000ba 0 0 8px 10px;
 }
-@media screen and (max-width: 715px) {
-    
+#popup-f {
+    position: absolute;
+    top: -19px;
+    left: -40px;
+    background: #f5ffd9;
+    border-radius: 7px;
 }
+
+/*for the switch*/
+.switch {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    right: 430px;
+    top:0;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
