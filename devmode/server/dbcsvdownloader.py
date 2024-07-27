@@ -6,7 +6,7 @@ from datetime import datetime
 URI = "mongodb://Fostereum:.,Fostereum1433@ac-dzujpvu-shard-00-00.6jwnbo2.mongodb.net:27017,ac-dzujpvu-shard-00-01.6jwnbo2.mongodb.net:27017,ac-dzujpvu-shard-00-02.6jwnbo2.mongodb.net:27017/?ssl=true&replicaSet=atlas-y8t6ay-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Fostereum"
 DATABSE = "Fostereum"
 COLLECTION = "sensor"
-SAVE_PATH = "F:\Fostereum\devmode\server\dataset"
+SAVE_PATH = "F:\Fostereum\devmode\dataset"
 #-------------------------^ change to your drive
 def get_next_filename(base_name, extension="csv"):
     save_directory = os.path.join(SAVE_PATH)
