@@ -114,7 +114,7 @@ void loop() {
   // Control relay1 for pump based on soil moisture
   if (soilMoisturePercentage < 31) {
     digitalWrite(RELAY2_PIN, LOW);
-    delay(4000); // Relay1 on for 4 seconds
+    delay(1500); // Relay1 on for 1.5 seconds
     digitalWrite(RELAY2_PIN, HIGH);
     pumpstate = "1";
   }
@@ -178,7 +178,7 @@ void loop() {
   Serial.println(lampstate);
 
   if (pumpstate == "triggered") {
-  delay(895650); // Delay for 14.1 minutes if pumpstate is "triggered/1"
+  delay(897.150); // Delay for 14.9 minutes if pumpstate is "triggered/1"
 } else {
   delay(899650); // Delay for 15 minutes if pumpstate is not "triggered/0"
 }
