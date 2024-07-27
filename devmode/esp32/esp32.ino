@@ -1,7 +1,7 @@
 //FOSTEREUMESP32CODE
 //WARNING: Do not change anything if you don't know what your'e doing!
 
-/included libraries
+//included libraries
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <DHT.h>
